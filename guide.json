@@ -1,0 +1,106 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "habblaud",
+    "nameCn": "Habblaud",
+    "repoName": "habblaud-deploy-guide",
+    "oneLiner": "1.0k stars，MIT，把多个 Claude Code Agent 变成像素办公室的本地看板",
+    "officialRepo": "https://github.com/marmottajr/habblaud",
+    "officialDocs": "https://github.com/marmottajr/habblaud/blob/main/README.md",
+    "stars": "1.0k",
+    "license": "MIT",
+    "highlights": [
+      "像素办公室：项目是房间，Agent 是角色",
+      "实时状态：打字、等待授权、交付、闲置一眼可见",
+      "额度看板：5 小时与每周用量实时显示",
+      "远程审批：在办公室批准或拒绝权限请求",
+      "发送消息：不用切终端就能给 Agent 发指令",
+      "本地优先：只读本地会话文件，不上传"
+    ],
+    "mcpSupport": "Habblaud 通过 Claude Code mod 与服务端协作，不含通用 MCP server；本仓库的 MCP 只提供部署步骤与常见问题。",
+    "webuiUrl": "http://127.0.0.1:4747",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-28",
+    "verification": [
+      [
+        "README 确认 Node 22.12+、Docker 启动、4747 端口与 mod 安装",
+        "已核对 2026-10-28"
+      ],
+      [
+        "Claude Code 2.1.287+ 与本地只读边界已核对",
+        "已核对 2026-10-28"
+      ],
+      [
+        "未实测部署（需要 Docker 与已登录的 Claude Code）",
+        "说明 2026-10-28"
+      ],
+      [
+        "非目标宿主调用被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-28"
+      ]
+    ],
+    "deploy": {
+      "type": "docker",
+      "requires": [
+        "node"
+      ],
+      "steps": [
+        "node -e \"const [a,b]=process.versions.node.split('.').map(Number); if(a<22||(a===22&&b<12)){console.error('需要 Node.js 22.12 或更高，当前 '+process.versions.node);process.exit(1)}\"",
+        "git clone https://github.com/marmottajr/habblaud.git",
+        "cd habblaud",
+        "npm install",
+        "npm run docker:up",
+        "echo \"部署完成：打开 http://127.0.0.1:4747\""
+      ],
+      "stepsPs": [
+        "throw 'Habblaud 官方只在 macOS 与 Linux 上测试；Windows 请使用 WSL2，或在 macOS / Linux 机器上部署'"
+      ],
+      "source": "https://github.com/marmottajr/habblaud#quick-start"
+    },
+    "pitfalls": [
+      "页面打不开：确认 npm run docker:up 成功，4747 未被占用",
+      "Agent 不出现：确认 Claude Code 已在该项目里运行过，并重开会话",
+      "额度不显示：运行 npm run mod:install，并确认 Claude Code 版本够新",
+      "Windows 跑不了：官方只测试 macOS / Linux，Windows 用 WSL2",
+      "移动目录后插件失效：重新运行 npm run mod:install",
+      "Docker 没装：先装 Docker Desktop 或 Docker Engine + Compose v2",
+      "担心隐私：Habblaud 只读本地会话文件，但办公室会显示项目名，分享前先检查"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/habblaud-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/habblaud-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "Habblaud 部署",
+    "Habblaud 教程",
+    "Claude Code 看板",
+    "Agent 像素办公室",
+    "Claude Code 多账号",
+    "Agent 额度 监控",
+    "本地 Agent 面板",
+    "Habblaud 中文",
+    "Claude Code 可视化",
+    "habblaud deploy guide"
+  ],
+  "topics": [
+    "claude-code",
+    "ai-agents",
+    "dashboard",
+    "docker",
+    "local-first"
+  ]
+}
